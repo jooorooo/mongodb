@@ -1,7 +1,7 @@
 Laravel MongoDB
 ===============
 
-[![Latest Stable Version](http://img.shields.io/github/release/jenssegers/laravel-mongodb.svg)](https://packagist.org/packages/jenssegers/mongodb) [![Total Downloads](http://img.shields.io/packagist/dm/jenssegers/mongodb.svg)](https://packagist.org/packages/jenssegers/mongodb) [![Build Status](http://img.shields.io/travis/jenssegers/laravel-mongodb.svg)](https://travis-ci.org/jenssegers/laravel-mongodb) [![Coverage Status](http://img.shields.io/coveralls/jenssegers/laravel-mongodb.svg)](https://coveralls.io/r/jenssegers/laravel-mongodb?branch=master) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.me/jenssegers)
+[![Latest Stable Version](http://img.shields.io/github/release/simexis/mongodb.svg)](https://packagist.org/packages/simexis/mongodb) [![Total Downloads](http://img.shields.io/packagist/dm/simexis/mongodb.svg)](https://packagist.org/packages/simexis/mongodb) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](paypal.me/GeorgiNachev)
 
 An Eloquent model and Query builder with support for MongoDB, using the original Laravel API. *This library extends the original Laravel classes, so it uses exactly the same methods.*
 
@@ -28,7 +28,7 @@ Make sure you have the MongoDB PHP driver installed. You can find installation i
 Installation using composer:
 
 ```
-composer require jenssegers/mongodb
+composer require simexis/mongodb
 ```
 
 ### Laravel version Compatibility
@@ -331,7 +331,7 @@ If you want to use this library with [Sentry](https://cartalyst.com/manual/sentr
 
 ### Sessions
 
-The MongoDB session driver is available in a separate package, check out https://github.com/jenssegers/Laravel-MongoDB-Session
+The MongoDB session driver is available in a separate package, check out https://github.com/jooorooo/mongodb-session
 
 Examples
 --------
@@ -668,7 +668,7 @@ $user->email = 'john@foo.com';
 $user->save();
 ```
 
-*There is also support for upsert operations, check https://github.com/jenssegers/laravel-mongodb#mongodb-specific-operations*
+*There is also support for upsert operations, check https://github.com/jooorooo/mongodb#mongodb-specific-operations*
 
 **Deleting a model**
 

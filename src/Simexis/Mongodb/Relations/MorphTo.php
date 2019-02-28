@@ -2,6 +2,7 @@
 
 namespace Simexis\Mongodb\Relations;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphTo as EloquentMorphTo;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use MongoDB\BSON\ObjectId;
@@ -31,8 +32,7 @@ class MorphTo extends EloquentMorphTo
     protected function matchToMorphParents($type, Collection $results)
     {
         foreach ($results as $result) {
-            $ownerKey = ! is_null($this->ownerKey) ? $result->{$this->ownerKey} : $result->getKey();
-            $ownerKey = $ownerKey instanceof ObjectId ? (string)$ownerKey : $ownerKey;
+            $ownerKey = $this->getQuery()->objectIdToString(! is_null($this->ownerKey) ? $result->{$this->ownerKey} : $result->getKey());
 
             if (isset($this->dictionary[$type][$ownerKey])) {
                 foreach ($this->dictionary[$type][$ownerKey] as $model) {
@@ -52,8 +52,7 @@ class MorphTo extends EloquentMorphTo
     {
         foreach ($models as $model) {
             if ($model->{$this->morphType}) {
-                $key = $model->{$this->foreignKey} instanceof ObjectId ? (string)$model->{$this->foreignKey} : $model->{$this->foreignKey};
-                $this->dictionary[$model->{$this->morphType}][$key][] = $model;
+                $this->dictionary[$model->{$this->morphType}][$key = $this->getQuery()->objectIdToString($model->{$this->foreignKey})][] = $model;
             }
         }
     }
