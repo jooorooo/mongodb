@@ -353,8 +353,14 @@ class Builder extends BaseBuilder
         else {
             $columns = [];
 
+            $counts = null;
             // Convert select columns to simple projections.
-            foreach ($this->columns as $column) {
+            foreach ($this->columns as $key => $column) {
+                if($key === 'with_count') {
+                    $counts = $column;
+                    unset($this->columns['with_count']);
+                    continue;
+                }
                 $columns[$column] = true;
             }
 
@@ -395,8 +401,34 @@ class Builder extends BaseBuilder
 
             // Return results as an array with numeric keys
             $results = iterator_to_array($cursor, false);
+
+            if($counts) {
+                $results = $this->_findCountResults($counts, $results);
+            }
+
             return $this->useCollections ? new Collection($results) : $results;
         }
+    }
+
+    protected function _findCountResults($counts, $models)
+    {
+        $results = [];
+        foreach($models AS $mrow => $model) {
+            foreach ($counts AS $column => $data) {
+                /** @var Builder $query */
+                $query = clone $data['query'];
+                foreach ($query->wheres AS $row => $where) {
+                    if (($where['type'] ?? null) == 'Column' && !empty($where['first']) && !empty($where['second']) && $where['first'] == $data['localKey'] && $where['second'] == $data['foreignKey']) {
+                        unset($query->wheres[$row]);
+                        $query->wheres = array_values($query->wheres);
+                        $foreignKey = Arr::last(explode('.', $data['localKey'], 2));
+                        $query->where($data['foreignKey'], $model[$foreignKey] ?? null);
+                    }
+                }
+                $models[$mrow][$column] = $query->count();
+            }
+        }
+        return $models;
     }
 
     /**

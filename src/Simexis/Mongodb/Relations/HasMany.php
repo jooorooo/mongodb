@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class HasMany extends EloquentHasMany
 {
+
     /**
      * Get the plain foreign key.
      *

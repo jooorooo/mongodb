@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class HasOne extends EloquentHasOne
 {
+
     /**
      * Get the key for comparing against the parent key in "has" query.
      *

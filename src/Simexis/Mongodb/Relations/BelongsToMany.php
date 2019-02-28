@@ -12,6 +12,7 @@ use MongoDB\BSON\ObjectId;
 
 class BelongsToMany extends EloquentBelongsToMany
 {
+
     /**
      * Get the key for comparing against the parent key in "has" query.
      *
