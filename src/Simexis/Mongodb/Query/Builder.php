@@ -891,9 +891,7 @@ class Builder extends BaseBuilder
         }
 
         foreach ($values as &$value) {
-            if($value instanceof ObjectId) {
-                $value = (string)$value;
-            } else {
+            if(!($value instanceof ObjectId)) {
                 $value = (int)$value;
             }
         }

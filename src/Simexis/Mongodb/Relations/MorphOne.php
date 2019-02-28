@@ -41,4 +41,19 @@ class MorphOne extends IlluminateMorphOne
         return $models;
     }
 
+    /**
+     * Build model dictionary keyed by the relation's foreign key.
+     *
+     * @param  \Illuminate\Database\Eloquent\Collection  $results
+     * @return array
+     */
+    protected function buildDictionary(Collection $results)
+    {
+        $foreign = $this->getForeignKeyName();
+
+        return $results->mapToDictionary(function ($result) use ($foreign) {
+            return [$this->getQuery()->objectIdToString($result->{$foreign}) => $result];
+        })->all();
+    }
+
 }
