@@ -1,7 +1,7 @@
 Laravel MongoDB
 ===============
 
-[![Latest Stable Version](http://img.shields.io/github/release/simexis/mongodb.svg)](https://packagist.org/packages/simexis/mongodb) [![Total Downloads](http://img.shields.io/packagist/dm/simexis/mongodb.svg)](https://packagist.org/packages/simexis/mongodb) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](paypal.me/GeorgiNachev)
+[![Latest Stable Version](http://img.shields.io/github/release/simexis/mongodb.svg)](https://packagist.org/packages/simexis/mongodb) [![Total Downloads](http://img.shields.io/packagist/dm/simexis/mongodb.svg)](https://packagist.org/packages/simexis/mongodb) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.me/GeorgiNachev)
 
 An Eloquent model and Query builder with support for MongoDB, using the original Laravel API. *This library extends the original Laravel classes, so it uses exactly the same methods.*
 
