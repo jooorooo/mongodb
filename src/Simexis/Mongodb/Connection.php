@@ -137,6 +137,10 @@ class Connection extends BaseConnection
         if (!isset($options['password']) && !empty($config['password'])) {
             $options['password'] = $config['password'];
         }
+		
+		if(!empty($config['replicaSet'])) {
+			$dsn .= '?replicaSet=' . $config['replicaSet'];
+		}
 
         return new Client($dsn, $options, $driverOptions);
     }
