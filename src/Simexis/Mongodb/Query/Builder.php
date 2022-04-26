@@ -299,6 +299,10 @@ class Builder extends BaseBuilder
                 $pipeline[] = ['$match' => $wheres];
             }
 
+            if ($this->projections) {
+                $pipeline[] = ['$project' => $this->projections];
+            }
+
             // apply unwinds for subdocument array aggregation
             foreach ($unwinds as $unwind) {
                 $pipeline[] = ['$unwind' => '$' . $unwind];
@@ -317,9 +321,6 @@ class Builder extends BaseBuilder
             }
             if ($this->limit) {
                 $pipeline[] = ['$limit' => $this->limit];
-            }
-            if ($this->projections) {
-                $pipeline[] = ['$project' => $this->projections];
             }
 
             $options = [
