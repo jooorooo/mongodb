@@ -104,6 +104,16 @@ class Connection extends BaseConnection
     }
 
     /**
+     * Get the name of the connected database.
+     *
+     * @return string
+     */
+    public function getDatabaseName()
+    {
+        return (string)$this->db;
+    }
+
+    /**
      * return MongoDB object.
      *
      * @return \MongoDB\Client
